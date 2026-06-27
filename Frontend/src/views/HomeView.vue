@@ -1,13 +1,39 @@
 <script setup>
-// Placeholder landing view. Real content/features come later.
+import { onMounted } from 'vue';
+import { useBabyStore } from '@/stores/baby.js';
+
+import HeroSection from '@/components/sections/HeroSection.vue';
+import BabyProfile from '@/components/sections/BabyProfile.vue';
+import BirthInfo from '@/components/sections/BirthInfo.vue';
+import AgeCounterSection from '@/components/sections/AgeCounterSection.vue';
+import StorySection from '@/components/sections/StorySection.vue';
+import TimelineSection from '@/components/sections/TimelineSection.vue';
+import GallerySection from '@/components/sections/GallerySection.vue';
+import StatsSection from '@/components/sections/StatsSection.vue';
+import WishesSection from '@/components/sections/WishesSection.vue';
+import GiftSection from '@/components/sections/GiftSection.vue';
+import LocationSection from '@/components/sections/LocationSection.vue';
+import ShareBar from '@/components/sections/ShareBar.vue';
+import AppFooter from '@/components/layout/AppFooter.vue';
+
+const baby = useBabyStore();
+onMounted(() => baby.fetch());
 </script>
 
 <template>
-  <main class="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-    <p class="text-sm uppercase tracking-[0.3em] text-gray-400">With love</p>
-    <h1 class="mt-4 text-4xl font-light text-gray-800 sm:text-5xl">Filomena</h1>
-    <p class="mt-4 max-w-md text-gray-500">
-      Project foundation is ready. Content coming soon.
-    </p>
-  </main>
+  <div>
+    <HeroSection />
+    <BabyProfile />
+    <BirthInfo />
+    <AgeCounterSection />
+    <StorySection />
+    <TimelineSection />
+    <GallerySection />
+    <StatsSection />
+    <WishesSection />
+    <GiftSection />
+    <LocationSection />
+    <ShareBar />
+    <AppFooter />
+  </div>
 </template>

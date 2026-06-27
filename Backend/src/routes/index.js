@@ -12,6 +12,7 @@ import musicRoutes from './music.routes.js';
 import giftRoutes from './gift.routes.js';
 import wishRoutes from './wish.routes.js';
 import visitorRoutes from './visitor.routes.js';
+import statsRoutes from './stats.routes.js';
 
 const router = Router();
 
@@ -23,6 +24,7 @@ router.use('/gallery', attachBaby, galleryRoutes);
 router.use('/timeline', attachBaby, timelineRoutes);
 router.use('/music', attachBaby, musicRoutes);
 router.use('/gift', attachBaby, giftRoutes);
+router.use('/stats', attachBaby, statsRoutes);
 
 // Mixed read/write endpoints (attachBaby applied inside, per method)
 router.use('/wishes', wishRoutes);

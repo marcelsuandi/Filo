@@ -37,6 +37,7 @@ Status codes: 200 OK, 201 Created, 404 Not Found, 409 Conflict,
 | GET    | `/api/timeline` | Pregnancy timeline               | paginate; filter `week_number`; sort `sort_order,week_number,event_date` |
 | GET    | `/api/music`    | Background tracks                | defaults to `is_active=true`; sort `sort_order,title` |
 | GET    | `/api/gift`     | Gift / QRIS methods              | defaults to `is_active=true`; filter `type`; sort `sort_order` |
+| GET    | `/api/stats`    | Visitor & wish counters          | `{ visits, unique_visitors, wishes_approved, wishes_total }` |
 | GET    | `/api/wishes`   | Approved wishes                  | paginate; search `?q=`; newest first |
 | POST   | `/api/wishes`   | Submit a wish (status: pending)  | body below |
 | POST   | `/api/visitor`  | Record a page visit              | body below |
