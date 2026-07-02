@@ -26,11 +26,11 @@ defineEmits(['open']);
       </div>
 
       <p class="mt-8 max-w-xs text-sm leading-relaxed text-ink-muted">
-        Kami mengundang Anda untuk berbagi kebahagiaan atas kehadiran putri kecil kami.
+        Dengan penuh kasih, kami ingin berbagi kabar bahagia dan memperkenalkan putri kecil kami kepada keluarga, sahabat dan orang-orang terkasih.
       </p>
 
       <div class="mt-8">
-        <BaseButton @click="$emit('open')">Buka Undangan</BaseButton>
+        <BaseButton @click="$emit('open')">Lihat Selengkapnya</BaseButton>
       </div>
     </div>
   </div>
