@@ -7,6 +7,7 @@ import SkeletonLine from '@/components/ui/SkeletonLine.vue';
 
 const baby = useBabyStore();
 const d = computed(() => baby.data || {});
+const headingTitle = computed(() => (baby.isBorn ? 'Detail Kelahiran' : 'Rencana Kelahiran'));
 
 const facts = computed(() => [
   { icon: 'calendar', label: 'Tanggal', value: formatDate(d.value.birth_date) },
@@ -19,7 +20,7 @@ const facts = computed(() => [
 
 <template>
   <section id="kelahiran" class="bg-ivory px-6 py-20">
-    <SectionHeading eyebrow="Informasi" title="Detail Kelahiran" />
+    <SectionHeading eyebrow="Informasi" :title="headingTitle" />
 
     <div class="mx-auto mt-10 max-w-sm">
       <template v-if="baby.loading">

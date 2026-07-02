@@ -9,6 +9,12 @@ export const useBabyStore = defineStore('baby', {
     familyParents: (s) => (s.data?.parents ?? []).filter((p) => p.role !== 'doctor'),
     // Tenaga medis yang menangani kelahiran.
     doctors: (s) => (s.data?.parents ?? []).filter((p) => p.role === 'doctor'),
+    // false selama tanggal lahir masih di masa depan (mode penantian).
+    isBorn: (s) => {
+      const d = s.data?.birth_date;
+      if (!d) return true;
+      return new Date(`${d}T00:00:00`).getTime() <= Date.now();
+    },
   },
   actions: {
     async fetch(force = false) {

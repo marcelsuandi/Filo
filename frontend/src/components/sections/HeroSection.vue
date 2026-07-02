@@ -9,6 +9,7 @@ const baby = useBabyStore();
 const { scrollToId } = useScrollTo();
 const name = computed(() => baby.data?.name || 'Filomena');
 const dateLabel = computed(() => (baby.data?.birth_date ? formatDate(baby.data.birth_date, { withDay: false }) : ''));
+const eyebrow = computed(() => (baby.isBorn ? 'Telah lahir putri kami' : 'Menantikan kelahiran putri kami'));
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const dateLabel = computed(() => (baby.data?.birth_date ? formatDate(baby.data.b
     <div class="pointer-events-none absolute bottom-10 -right-12 h-52 w-52 rounded-full bg-blush/30 blur-3xl animate-floaty" style="animation-delay: 1.5s"></div>
 
     <p class="font-script text-2xl text-gold-deep" v-reveal>dengan penuh syukur</p>
-    <p class="eyebrow mt-5" v-reveal="{ delay: 80 }">Telah lahir putri kami</p>
+    <p class="eyebrow mt-5" v-reveal="{ delay: 80 }">{{ eyebrow }}</p>
 
     <h1 class="mt-4 font-display text-6xl font-semibold leading-none text-ink-soft sm:text-7xl" v-reveal="{ delay: 140 }">
       {{ name }}

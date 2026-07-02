@@ -2,11 +2,18 @@
 import { computed } from 'vue';
 import { useBabyStore } from '@/stores/baby.js';
 import { useBabyAge } from '@/composables/useBabyAge.js';
+import { formatDate } from '@/utils/format.js';
 import SectionHeading from '@/components/ui/SectionHeading.vue';
 
 const baby = useBabyStore();
-const { age } = useBabyAge(() => baby.data?.birth_date);
+const { age, isFuture } = useBabyAge(() => baby.data?.birth_date);
 const name = computed(() => baby.data?.name || 'Filomena');
+
+const eyebrow = computed(() => (isFuture.value ? 'Menanti dengan Penuh Doa' : 'Setiap Detik Berharga'));
+const title = computed(() => (isFuture.value ? 'Menuju Hari Kelahiran' : `Usia ${name.value}`));
+const dateLabel = computed(() =>
+  baby.data?.birth_date ? formatDate(baby.data.birth_date) : ''
+);
 
 const units = computed(() => [
   { label: 'Hari', value: age.value.days },
@@ -19,7 +26,7 @@ const pad = (n) => String(n).padStart(2, '0');
 
 <template>
   <section id="usia" class="px-6 py-20">
-    <SectionHeading eyebrow="Setiap Detik Berharga" :title="`Usia ${name}`" />
+    <SectionHeading :eyebrow="eyebrow" :title="title" />
 
     <div class="mx-auto mt-10 grid max-w-sm grid-cols-4 gap-3" v-reveal>
       <div
@@ -32,5 +39,9 @@ const pad = (n) => String(n).padStart(2, '0');
         <p class="mt-1 text-[0.6rem] uppercase tracking-[0.2em] text-ink-muted">{{ u.label }}</p>
       </div>
     </div>
+
+    <p v-if="isFuture && dateLabel" class="mt-6 text-center text-sm text-ink-muted" v-reveal="{ delay: 120 }">
+      Rencana persalinan pada <span class="text-gold-deep">{{ dateLabel }}</span>
+    </p>
   </section>
 </template>
