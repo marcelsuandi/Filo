@@ -6,7 +6,7 @@ export default (sequelize) => {
     {
       id: { type: DataTypes.BIGINT.UNSIGNED, autoIncrement: true, primaryKey: true },
       babyId: { type: DataTypes.BIGINT.UNSIGNED, allowNull: false, field: 'baby_id' },
-      role: { type: DataTypes.ENUM('mother', 'father', 'guardian'), allowNull: false },
+      role: { type: DataTypes.ENUM('mother', 'father', 'guardian', 'doctor'), allowNull: false },
       fullName: { type: DataTypes.STRING(100), allowNull: false, field: 'full_name' },
       nickname: { type: DataTypes.STRING(50), allowNull: true },
       photoUrl: { type: DataTypes.STRING(255), allowNull: true, field: 'photo_url' },

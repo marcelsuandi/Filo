@@ -5,7 +5,7 @@ import MonogramF from '@/components/ui/MonogramF.vue';
 
 const baby = useBabyStore();
 const name = computed(() => baby.data?.name || 'Filomena');
-const parents = computed(() => baby.parents);
+const parents = computed(() => baby.familyParents);
 const year = new Date().getFullYear();
 </script>
 

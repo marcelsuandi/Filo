@@ -5,6 +5,10 @@ export const useBabyStore = defineStore('baby', {
   state: () => ({ data: null, loading: false, error: null, _promise: null }),
   getters: {
     parents: (s) => s.data?.parents ?? [],
+    // Orang tua saja (untuk "Dengan cinta" dan footer) — dokter dikecualikan.
+    familyParents: (s) => (s.data?.parents ?? []).filter((p) => p.role !== 'doctor'),
+    // Tenaga medis yang menangani kelahiran.
+    doctors: (s) => (s.data?.parents ?? []).filter((p) => p.role === 'doctor'),
   },
   actions: {
     async fetch(force = false) {

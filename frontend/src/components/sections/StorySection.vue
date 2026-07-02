@@ -5,7 +5,7 @@ import SectionHeading from '@/components/ui/SectionHeading.vue';
 import SkeletonLine from '@/components/ui/SkeletonLine.vue';
 
 const baby = useBabyStore();
-const parents = computed(() => baby.parents);
+const parents = computed(() => baby.familyParents);
 const story = computed(() => baby.data?.description || '');
 </script>
 

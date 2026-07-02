@@ -7,6 +7,7 @@ import BabyProfile from '@/components/sections/BabyProfile.vue';
 import BirthInfo from '@/components/sections/BirthInfo.vue';
 import AgeCounterSection from '@/components/sections/AgeCounterSection.vue';
 import StorySection from '@/components/sections/StorySection.vue';
+import DoctorSection from '@/components/sections/DoctorSection.vue';
 import TimelineSection from '@/components/sections/TimelineSection.vue';
 import GallerySection from '@/components/sections/GallerySection.vue';
 import StatsSection from '@/components/sections/StatsSection.vue';
@@ -27,6 +28,7 @@ onMounted(() => baby.fetch());
     <BirthInfo />
     <AgeCounterSection />
     <StorySection />
+    <DoctorSection />
     <TimelineSection />
     <GallerySection />
     <StatsSection />

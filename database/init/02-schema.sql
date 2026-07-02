@@ -46,7 +46,7 @@ CREATE TABLE babies (
 CREATE TABLE parents (
   id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   baby_id          BIGINT UNSIGNED NOT NULL,
-  role             ENUM('mother','father','guardian') NOT NULL,
+  role             ENUM('mother','father','guardian','doctor') NOT NULL,
   full_name        VARCHAR(100)    NOT NULL,
   nickname         VARCHAR(50)     NULL,
   photo_url        VARCHAR(255)    NULL,
