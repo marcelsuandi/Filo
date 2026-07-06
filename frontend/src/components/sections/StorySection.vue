@@ -27,8 +27,27 @@ const story = computed(() => baby.data?.description || '');
           {{ story || 'Setiap doa yang terucap, setiap hari yang dinanti, kini berwujud dalam dirimu. Selamat datang, anakku.' }}
         </p>
 
-        <div v-if="parents.length" class="mt-8" v-reveal="{ delay: 120 }">
-          <p class="eyebrow text-[0.6rem]">Dengan cinta</p>
+        <div v-if="parents.length" class="mt-10" v-reveal="{ delay: 120 }">
+          <div class="flex items-start justify-center gap-8">
+            <figure v-for="p in parents" :key="p.id" class="flex flex-col items-center">
+              <div class="h-24 w-24 overflow-hidden rounded-full border border-gold-soft/60 bg-sand shadow-card">
+                <img
+                  v-if="p.photo_url"
+                  :src="p.photo_url"
+                  :alt="p.full_name"
+                  loading="lazy"
+                  class="h-full w-full object-cover"
+                />
+                <div v-else class="flex h-full w-full items-center justify-center font-script text-3xl text-gold-deep/70">
+                  {{ (p.nickname || p.full_name || '?').charAt(0) }}
+                </div>
+              </div>
+              <figcaption class="mt-3 font-display text-lg text-ink-soft">{{ p.nickname }}</figcaption>
+              <p class="max-w-[9rem] text-xs leading-snug text-ink-muted">{{ p.full_name }}</p>
+            </figure>
+          </div>
+
+          <p class="eyebrow mt-8 text-[0.6rem]">Dengan cinta</p>
           <p class="mt-2 font-script text-2xl text-gold-deep">
             {{ parents.map((p) => p.nickname || p.full_name).join(' & ') }}
           </p>

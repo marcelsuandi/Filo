@@ -13,6 +13,7 @@ const hospital = {
 };
 // ---------------------------------------------------------------------------
 
+const doctors = computed(() => baby.doctors);
 const place = computed(() => baby.data?.birth_place || '');
 const city = computed(() => baby.data?.birth_city || '');
 // Query peta memakai alamat lengkap bila lokasi RS ini, agar pin tepat.
@@ -52,6 +53,33 @@ const mapsLink = computed(() => `https://www.google.com/maps/search/?api=1&query
       </template>
 
       <p v-else class="text-sm text-ink-muted">Informasi lokasi belum tersedia.</p>
+
+      <!-- Dokter yang menangani -->
+      <div v-if="doctors.length" class="mt-10 border-t border-shell/70 pt-8" v-reveal="{ delay: 100 }">
+        <p class="eyebrow text-[0.6rem]">Ditangani oleh</p>
+        <div
+          v-for="doc in doctors"
+          :key="doc.id"
+          class="mt-4 flex items-center justify-center gap-4"
+        >
+          <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-gold-soft/60 bg-sand">
+            <img
+              v-if="doc.photo_url"
+              :src="doc.photo_url"
+              :alt="doc.full_name"
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+            <div v-else class="flex h-full w-full items-center justify-center font-script text-2xl text-gold-deep/70">
+              {{ (doc.full_name || 'd').charAt(0) }}
+            </div>
+          </div>
+          <div class="text-left">
+            <p class="font-display text-lg leading-tight text-ink-soft">{{ doc.full_name }}</p>
+            <p v-if="doc.nickname" class="text-xs uppercase tracking-[0.16em] text-gold-deep">{{ doc.nickname }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
