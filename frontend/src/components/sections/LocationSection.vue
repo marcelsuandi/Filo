@@ -55,14 +55,14 @@ const mapsLink = computed(() => `https://www.google.com/maps/search/?api=1&query
       <p v-else class="text-sm text-ink-muted">Informasi lokasi belum tersedia.</p>
 
       <!-- Dokter yang menangani -->
-      <div v-if="doctors.length" class="mt-10 border-t border-shell/70 pt-8" v-reveal="{ delay: 100 }">
-        <p class="eyebrow text-[0.6rem]">Ditangani oleh</p>
+      <div v-if="doctors.length" class="mt-10 border-t border-shell/70 pt-10" v-reveal="{ delay: 100 }">
+        <p class="eyebrow text-[0.7rem]">Dokter Kami</p>
         <div
           v-for="doc in doctors"
           :key="doc.id"
-          class="mt-4 flex items-center justify-center gap-4"
+          class="mt-5 flex items-center gap-5 rounded-2xl border border-gold-soft/40 bg-cream p-5 text-left shadow-soft"
         >
-          <div class="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-gold-soft/60 bg-sand">
+          <div class="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-gold-soft/60 bg-sand">
             <img
               v-if="doc.photo_url"
               :src="doc.photo_url"
@@ -70,13 +70,14 @@ const mapsLink = computed(() => `https://www.google.com/maps/search/?api=1&query
               loading="lazy"
               class="h-full w-full object-cover"
             />
-            <div v-else class="flex h-full w-full items-center justify-center font-script text-2xl text-gold-deep/70">
+            <div v-else class="flex h-full w-full items-center justify-center font-script text-3xl text-gold-deep/70">
               {{ (doc.full_name || 'd').charAt(0) }}
             </div>
           </div>
-          <div class="text-left">
-            <p class="font-display text-lg leading-tight text-ink-soft">{{ doc.full_name }}</p>
+          <div class="min-w-0">
+            <p class="font-display text-xl leading-tight text-ink-soft">{{ doc.full_name }}</p>
             <p v-if="doc.nickname" class="text-xs uppercase tracking-[0.16em] text-gold-deep">{{ doc.nickname }}</p>
+            <p v-if="doc.bio" class="mt-1 text-sm leading-relaxed text-ink-muted">{{ doc.bio }}</p>
           </div>
         </div>
       </div>
