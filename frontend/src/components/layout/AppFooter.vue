@@ -20,7 +20,7 @@ const year = new Date().getFullYear();
       Terima kasih atas doa dan kasih sayang yang telah Anda berikan.
     </p>
     <p class="mt-8 text-[0.65rem] uppercase tracking-[0.25em] text-ink-faint">
-      &copy; {{ year }} · Dibuat dengan cinta
+      &copy; {{ year }} · Bapaknya IT ITB
     </p>
   </footer>
 </template>

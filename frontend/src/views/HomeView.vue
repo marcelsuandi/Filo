@@ -12,9 +12,9 @@ import TimelineSection from '@/components/sections/TimelineSection.vue';
 import GallerySection from '@/components/sections/GallerySection.vue';
 import StatsSection from '@/components/sections/StatsSection.vue';
 import WishesSection from '@/components/sections/WishesSection.vue';
-import GiftSection from '@/components/sections/GiftSection.vue';
+// import GiftSection from '@/components/sections/GiftSection.vue';   // dinonaktifkan
 import LocationSection from '@/components/sections/LocationSection.vue';
-import ShareBar from '@/components/sections/ShareBar.vue';
+// import ShareBar from '@/components/sections/ShareBar.vue';         // dinonaktifkan
 import AppFooter from '@/components/layout/AppFooter.vue';
 
 const baby = useBabyStore();
@@ -33,9 +33,9 @@ onMounted(() => baby.fetch());
     <GallerySection />
     <StatsSection />
     <WishesSection />
-    <GiftSection />
+    <!-- <GiftSection /> -->
     <LocationSection />
-    <ShareBar />
+    <!-- <ShareBar /> -->
     <AppFooter />
   </div>
 </template>

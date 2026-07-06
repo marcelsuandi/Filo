@@ -46,6 +46,13 @@ onMounted(() => store.fetch());
           </p>
           <h3 class="mt-1 font-display text-xl text-ink-soft">{{ item.title }}</h3>
           <p v-if="item.description" class="mt-1 text-sm leading-relaxed text-ink-muted">{{ item.description }}</p>
+          <img
+            v-if="item.image_url"
+            :src="item.image_url"
+            :alt="item.title"
+            loading="lazy"
+            class="mt-3 w-full max-w-[16rem] rounded-2xl object-cover shadow-soft"
+          />
         </li>
       </ol>
     </div>
