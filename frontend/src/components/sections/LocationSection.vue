@@ -10,6 +10,8 @@ const baby = useBabyStore();
 const hospital = {
   address: 'Jl. Raya Jatimekar RT.001/RW.012, Jatimekar, Kec. Jatiasih, Kota Bekasi, Jawa Barat 17422',
   phone: '(021) 8551 1000',
+  room: 'Ruang Anyelir, Kamar 208, Lantai 2',
+  visitingHours: ['10.00 - 12.00 WIB', '17.00 - 19.00 WIB'],
 };
 // ---------------------------------------------------------------------------
 
@@ -35,6 +37,16 @@ const mapsLink = computed(() => `https://www.google.com/maps/search/?api=1&query
         <p class="font-display text-2xl text-ink-soft">{{ place }}</p>
         <p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ hospital.address }}</p>
         <p v-if="hospital.phone" class="mt-1 text-sm text-ink-muted">Telp. {{ hospital.phone }}</p>
+
+        <!-- Info ruang perawatan & jam besuk -->
+        <div class="mx-auto mt-6 max-w-xs rounded-2xl border border-gold-soft/40 bg-ivory p-5 text-center shadow-soft">
+          <p class="eyebrow text-[0.6rem]">Kami berada di</p>
+          <p class="mt-2 font-display text-lg text-ink-soft">{{ hospital.room }}</p>
+          <div class="mt-4 border-t border-shell/70 pt-4">
+            <p class="eyebrow text-[0.6rem]">Jam Besuk</p>
+            <p v-for="jam in hospital.visitingHours" :key="jam" class="mt-1 text-sm text-ink-muted">{{ jam }}</p>
+          </div>
+        </div>
 
         <div class="mt-6 overflow-hidden rounded-2xl border border-shell shadow-soft">
           <iframe
