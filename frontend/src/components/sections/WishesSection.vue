@@ -101,6 +101,15 @@ async function onSubmit() {
           <p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ wish.message }}</p>
         </li>
       </ul>
+
+      <div v-if="!store.loading && store.items.length" class="mt-8 text-center">
+        <RouterLink
+          to="/ucapan"
+          class="inline-flex items-center gap-2 rounded-full border border-gold px-6 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-gold-deep transition hover:bg-gold/10"
+        >
+          Lihat Semua Ucapan
+        </RouterLink>
+      </div>
     </div>
   </section>
 </template>

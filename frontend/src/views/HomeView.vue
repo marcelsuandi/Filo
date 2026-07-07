@@ -31,10 +31,10 @@ onMounted(() => baby.fetch());
     <!-- <DoctorSection /> -->
     <TimelineSection />
     <GallerySection />
-    <StatsSection />
-    <WishesSection />
     <!-- <GiftSection /> -->
     <LocationSection />
+    <StatsSection />
+    <WishesSection />
     <!-- <ShareBar /> -->
     <AppFooter />
   </div>
