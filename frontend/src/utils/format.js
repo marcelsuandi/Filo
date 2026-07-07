@@ -19,10 +19,16 @@ export function formatTime(value) {
 
 export function formatWeight(grams) {
   if (!grams && grams !== 0) return '';
-  return `${(grams / 1000).toFixed(grams % 1000 === 0 ? 0 : 1)} kg`;
+  const str = (grams / 1000)
+    .toFixed(2)            // dua desimal, tanpa pembulatan berlebihan (3280 -> 3.28)
+    .replace(/0+$/, '')    // buang nol di belakang (3.20 -> 3.2)
+    .replace(/\.$/, '')   // buang titik jika tersisa (3.00 -> 3)
+    .replace('.', ',');    // format desimal Indonesia (3.28 -> 3,28)
+  return `${str} kg`;
 }
 
 export function formatLength(cm) {
   if (!cm && cm !== 0) return '';
-  return `${cm} cm`;
+  const str = String(cm).replace(/\.0+$/, '').replace('.', ',');  // 48.0 -> 48, 49.5 -> 49,5
+  return `${str} cm`;
 }
