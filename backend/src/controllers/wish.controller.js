@@ -29,7 +29,7 @@ export const getWishes = asyncHandler(async (req, res) => {
   });
 });
 
-// POST /api/wishes  -> create a wish (defaults to status "pending" for moderation)
+// POST /api/wishes  -> create a wish (auto-approved: langsung tampil di halaman)
 export const createWish = asyncHandler(async (req, res) => {
   const { guest_name, guest_relation, message } = req.body;
 
@@ -38,7 +38,7 @@ export const createWish = asyncHandler(async (req, res) => {
     guestName: guest_name,
     guestRelation: guest_relation ?? null,
     message,
-    status: 'pending',
+    status: 'approved',
     ipHash: hashIp(req.ip),
   });
 
@@ -46,7 +46,7 @@ export const createWish = asyncHandler(async (req, res) => {
   const wish = await Wish.findByPk(created.id);
   return sendSuccess(res, {
     statusCode: 201,
-    message: 'Thank you! Your wish has been submitted and is awaiting approval.',
+    message: 'Terima kasih! Ucapan Anda sudah tampil di halaman.',
     data: wish,
   });
 });

@@ -9,6 +9,11 @@ const data = computed(() => baby.data);
 const featured = computed(() => null); // hero portrait can be wired to a featured photo later
 // Nama lengkap khusus ditampilkan di bagian Profil (hero & counter tetap pakai nickname dari DB).
 const fullName = 'Filomena Lioranda Tambing';
+const nameMeaning = [
+  { part: 'Filomena', meaning: 'Berasal dari bahasa Yunani (Philomena), artinya "yang dicintai".' },
+  { part: 'Lioranda', meaning: 'Gabungan dari Liora (Ibrani) yang berarti "pembawa terang", dan "Anda" yang berarti Anak Andi dan Nada.' },
+  { part: 'Tambing', meaning: 'Merupakan nama keluarga.' },
+];
 </script>
  
 <template>
@@ -42,6 +47,16 @@ const fullName = 'Filomena Lioranda Tambing';
           <p v-if="data?.description" class="mx-auto mt-4 max-w-md text-[0.95rem] leading-relaxed text-ink-muted">
             {{ data.description }}
           </p>
+
+          <div class="mx-auto mt-8 max-w-md text-left" v-reveal="{ delay: 120 }">
+            <p class="eyebrow text-center text-[0.6rem]">Makna Nama</p>
+            <ul class="mt-4 space-y-4">
+              <li v-for="n in nameMeaning" :key="n.part" class="rounded-2xl border border-shell/70 bg-ivory p-4">
+                <p class="font-display text-xl text-gold-deep">{{ n.part }}</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink-muted">{{ n.meaning }}</p>
+              </li>
+            </ul>
+          </div>
         </template>
       </div>
     </div>
