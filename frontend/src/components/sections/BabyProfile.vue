@@ -8,6 +8,7 @@ const baby = useBabyStore();
 const data = computed(() => baby.data);
 const featured = computed(() => null); // hero portrait can be wired to a featured photo later
 // Nama lengkap khusus ditampilkan di bagian Profil (hero & counter tetap pakai nickname dari DB).
+const profilePhoto = '/filo_2.jpg';  // foto profil Si Kecil Kami
 const fullName = 'Filomena Lioranda Tambing';
 const nameMeaning = [
   { part: 'Filomena', meaning: 'Berasal dari bahasa Yunani (Philomena), artinya "yang dicintai".' },
@@ -23,9 +24,9 @@ const nameMeaning = [
     <div class="mt-10" v-reveal>
       <div class="mx-auto h-44 w-44 overflow-hidden rounded-full border border-gold-soft/60 bg-sand shadow-card">
         <img
-          v-if="data?.photo_url || featured"
-          :src="data?.photo_url || featured"
-          :alt="`Foto ${data?.name || 'bayi'}`"
+          v-if="profilePhoto"
+          :src="profilePhoto"
+          :alt="`Foto ${fullName}`"
           class="h-full w-full object-cover"
           loading="lazy"
         />
