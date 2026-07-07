@@ -6,7 +6,7 @@ import { formatDate } from '@/utils/format.js';
 import SectionHeading from '@/components/ui/SectionHeading.vue';
 
 const baby = useBabyStore();
-const { age, isFuture } = useBabyAge(() => baby.data?.birth_date);
+const { age, isFuture } = useBabyAge(() => baby.data?.birth_date, () => baby.data?.birth_time);
 const name = computed(() => baby.data?.name || 'Filomena');
 
 const eyebrow = computed(() => (isFuture.value ? 'Menanti dengan Penuh Doa' : 'Setiap Detik Berharga'));

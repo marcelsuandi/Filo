@@ -13,7 +13,8 @@ export const useBabyStore = defineStore('baby', {
     isBorn: (s) => {
       const d = s.data?.birth_date;
       if (!d) return true;
-      return new Date(`${d}T00:00:00`).getTime() <= Date.now();
+      const t = s.data?.birth_time || '00:00:00';
+      return new Date(`${d}T${t}+07:00`).getTime() <= Date.now();
     },
   },
   actions: {
