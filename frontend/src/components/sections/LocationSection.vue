@@ -6,47 +6,38 @@ import BaseButton from '@/components/ui/BaseButton.vue';
 
 const baby = useBabyStore();
 
-// --- Info rumah sakit (silakan sesuaikan bila perlu) -----------------------
-const hospital = {
-  address: 'Jl. Raya Jatimekar RT.001/RW.012, Jatimekar, Kec. Jatiasih, Kota Bekasi, Jawa Barat 17422',
-  phone: '(021) 8551 1000',
-  room: 'Ruang Anyelir, Kamar 208, Lantai 2',
-  visitingHours: ['10.00 - 12.00 WIB', '17.00 - 19.00 WIB'],
+// --- Lokasi saat ini (silakan sesuaikan bila pindah) ------------------------
+const current = {
+  title: 'Kediaman Kami',
+  name: 'Rumah Orang Tua',
+  address: 'Jl. Lumbu Tengah II No.112, Rawalumbu, Kota Bekasi, Jawa Barat',
+  note: 'Puji Tuhan, Filo dan Mama sudah pulang dari rumah sakit dan kini berada di rumah.',
 };
-// ---------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 const doctors = computed(() => baby.doctors);
 const place = computed(() => baby.data?.birth_place || '');
-const city = computed(() => baby.data?.birth_city || '');
-// Query peta memakai alamat lengkap bila lokasi RS ini, agar pin tepat.
-const query = computed(() => {
-  const base = [place.value, city.value].filter(Boolean).join(', ');
-  return place.value ? `${place.value}, ${hospital.address}` : base;
-});
-const hasLocation = computed(() => !!place.value);
+// Peta menunjuk ke alamat kediaman saat ini.
+const query = computed(() => current.address);
+const hasLocation = computed(() => !!current.address);
 const mapsEmbed = computed(() => `https://maps.google.com/maps?q=${encodeURIComponent(query.value)}&z=16&output=embed`);
 const mapsLink = computed(() => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query.value)}`);
 </script>
 
 <template>
   <section id="lokasi" class="bg-ivory px-6 py-20">
-    <SectionHeading eyebrow="Lokasi" title="Rumah Sakit" />
+    <SectionHeading eyebrow="Lokasi" :title="current.title" />
 
     <div class="mx-auto mt-10 max-w-md text-center" v-reveal>
       <template v-if="hasLocation">
-        <p class="font-display text-2xl text-ink-soft">{{ place }}</p>
-        <p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ hospital.address }}</p>
-        <p v-if="hospital.phone" class="mt-1 text-sm text-ink-muted">Telp. {{ hospital.phone }}</p>
+        <p class="font-display text-2xl text-ink-soft">{{ current.name }}</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ current.address }}</p>
 
-        <!-- Info ruang perawatan & jam besuk -->
-        <div class="mx-auto mt-6 max-w-xs rounded-2xl border border-gold-soft/40 bg-ivory p-5 text-center shadow-soft">
-          <p class="eyebrow text-[0.6rem]">Kami berada di</p>
-          <p class="mt-2 font-display text-lg text-ink-soft">{{ hospital.room }}</p>
-          <div class="mt-4 border-t border-shell/70 pt-4">
-            <p class="eyebrow text-[0.6rem]">Jam Besuk</p>
-            <p v-for="jam in hospital.visitingHours" :key="jam" class="mt-1 text-sm text-ink-muted">{{ jam }}</p>
-          </div>
+        <div v-if="current.note" class="mx-auto mt-6 max-w-xs rounded-2xl border border-gold-soft/40 bg-ivory p-5 text-center shadow-soft">
+          <p class="text-sm leading-relaxed text-ink-muted">{{ current.note }}</p>
         </div>
+
+        <p v-if="place" class="mt-4 text-xs italic text-ink-faint">Lahir di {{ place }}</p>
 
         <div class="mt-6 overflow-hidden rounded-2xl border border-shell shadow-soft">
           <iframe
